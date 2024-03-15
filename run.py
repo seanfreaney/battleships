@@ -16,10 +16,14 @@ class Board:
             print(" ".join(row))
 
     def place_ships_randomly(self, num_ships):
-        row = random.randint(0, self.size - 1)
-        col = random.randint(0, self.size - 1)
-        self.board[row][col] = "X"
-        self.ships.append((row, col))
+        for _ in range(num_ships):
+            while True:
+                row = random.randint(0, self.size - 1)
+                col = random.randint(0, self.size - 1)
+                if self.board[row][col] == ".": #check if position is empty
+                    self.board[row][col] = "X"
+                    self.ships.append((row, col))
+                    break
 
 
 class Player:
