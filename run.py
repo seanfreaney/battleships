@@ -2,7 +2,7 @@ import random
 
 class Board: 
     """
-    Class to set board size and display.
+    Class to set board size and display board.
     """
     def __init__(self, size, num_ships):
         self.size = size
@@ -35,6 +35,8 @@ class Player:
         self.board = Board(size, num_ships)
 
 
+
+
 def game():
     size = 6
     num_ships = 5
@@ -42,15 +44,12 @@ def game():
     player_board = Board(size, num_ships)
     computer_board = Board(size, num_ships)
 
-    player1 = Player("Sean", size, num_ships)
-    computer = Player("Computer", size, num_ships)
-
     #Project 3 Scope video
     print("Welcome to Battleships")
-    player_name = input("Enter your name: ")
     print(f"Board Size: {size} * {size}.")
     #placeholder for num ships message
     print("Top left corner is row: 0, column: 0")
+    player_name = input("Enter your name: ")
     print("-" * 35)
 
     print("\nComputer Board:")
