@@ -16,7 +16,7 @@ class Board:
             print(" ".join(row))
 
     def place_ships_randomly(self, num_ships):
-        for _ in range(num_ships):
+        for _ in range(num_ships): #iterate for each ship
             while True:
                 row = random.randint(0, self.size - 1)
                 col = random.randint(0, self.size - 1)
@@ -38,7 +38,7 @@ class Player:
 def game():
     size = 6
     num_ships = 5
-    
+
     player_board = Board(size, num_ships)
     computer_board = Board(size, num_ships)
 
@@ -47,6 +47,7 @@ def game():
 
     #Project 3 Scope video
     print("Welcome to Battleships")
+    player_name = input("Enter your name: ")
     print(f"Board Size: {size} * {size}.")
     #placeholder for num ships message
     print("Top left corner is row: 0, column: 0")
@@ -55,7 +56,7 @@ def game():
     print("\nComputer Board:")
     computer_board.print()
 
-    print("\nPlayer Board:")
+    print(f"\n{player_name}'s Board:")
     player_board.print()
 
 game()
