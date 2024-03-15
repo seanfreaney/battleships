@@ -1,7 +1,5 @@
 import random
 
-
-
 class Board: 
     """
     Class to set board size and display.
@@ -15,11 +13,27 @@ class Board:
             print(" ".join(row))
 
 
-def game():
+class Player:
+    """
+    Class to represent player.
+    """
+    def __init__(self, name, size):
+        self.name = name
+        self.board = Board(size)
 
-    size = 5
-    board = Board(size)
-    board.print()
+
+def game():
+    size = 6
+    player_board = Board(size)
+    computer_board = Board(size)
+
+    player = Player("Sean", size)
+
+    print("Player Board:")
+    player_board.print()
+
+    print("\nComputer Board:")
+    computer_board.print()
 
 game()
 
