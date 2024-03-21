@@ -9,7 +9,6 @@ class Board:
         self.board = [["." for x in range(size)] for y in range(size)] #Project 3 scope video
         self.num_ships = num_ships
         self.ships = [] #initialise ships list
-        #self.place_ships_randomly(num_ships)
     
     def print(self): #Project 3 scope video
         for row in self.board:
@@ -22,6 +21,16 @@ class Board:
         for row, col in self.ships: #loop over each ship
             hidden_board[row][col] = "." #hide X with .
         return hidden_board
+    
+    def make_guess(self, row, col):
+        if self.board[row][col] == "X":
+            print("Hit!")
+            self.board[row][col] = "@"
+            return True
+        else:
+            print("Miss!")
+            self.board[row][col] = "0"
+            return False
 
 
 class Player:
@@ -50,8 +59,8 @@ def populate_board(board_obj, num_ships):
 
 
 def game():
-    size = 6
-    num_ships = 5
+    size = 4
+    num_ships = 4
 
     player_board = Board(size, num_ships)
     computer_board = Board(size, num_ships)
@@ -70,7 +79,6 @@ def game():
     print("Top left corner is row: 0, column: 0")
     player_name = input("Enter your name: ")
     print("-" * 35)
-
     
     print(f"{player_name}'s Board: ")
     player_board.print()
@@ -78,6 +86,10 @@ def game():
     print("\nComputer's Hidden Board:")
     for row in hidden_computer_board:
         print(" ".join(row))
+    
+    validate_coordinates(size)
+    
+
 
 
 
