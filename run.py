@@ -87,12 +87,17 @@ def game_loop(player_board, computer_board, size):
         print("\nComputer's Hidden Board:")
         for row in hidden_computer_board:
             print(" ".join(row))
+        
+        # Check if all ships are sunk
+        if all(cell != "X" for row in computer_board.board for cell in row):
+            print("Congratulations! You have sunk all computer's ships!")
+            break
 
 
 
 def game():
-    size = 4
-    num_ships = 4
+    size = 3
+    num_ships = 2
 
     player_board = Board(size, num_ships)
     computer_board = Board(size, num_ships)
