@@ -58,11 +58,12 @@ def populate_board(board_obj, num_ships):
 
 
 def validate_coordinates(size):
-    try:
-        
+    
+    try: #try-except block to handle invalid input. If guesses not integers function calls itself again
         guess_row = int(input("Enter the row number to guess (0 to {}): ".format(size - 1)))
         guess_col = int(input("Enter the column number to guess (0 to {}): ".format(size - 1)))
         
+        # check if player's guesses are greater than 0 and less than size. If not function calls itself again
         if 0 <= guess_row < size and 0 <= guess_col < size:
             return guess_row, guess_col
         else:
