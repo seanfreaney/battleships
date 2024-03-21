@@ -32,7 +32,6 @@ class Board:
             self.board[row][col] = "0"
             return False
 
-
 class Player:
     """
     Class to represent player.
@@ -56,6 +55,39 @@ def populate_board(board_obj, num_ships):
             board_obj.board[row][col] = 'X' #if empty place a ship there
             board_obj.ships.append((row,col)) #append coordinates to ships list
             ships_on_board += 1 #increment ships on board by one
+
+
+def validate_coordinates(size):
+    try:
+        
+        guess_row = int(input("Enter the row number to guess (0 to {}): ".format(size - 1)))
+        guess_col = int(input("Enter the column number to guess (0 to {}): ".format(size - 1)))
+        
+        if 0 <= guess_row < size and 0 <= guess_col < size:
+            return guess_row, guess_col
+        else:
+            print("Please enter valid row and column numbers.")
+            return validate_coordinates(size)
+    except ValueError:
+        print("Please enter valid integers for row and column.")
+        return validate_coordinates(size)
+
+
+def game_loop(player_board, computer_board, size):
+    
+    while True:
+
+        guess_row, guess_col = validate_coordinates(size)
+    
+    # Player makes a guess on the hidden computer board
+        is_hit = computer_board.make_guess(guess_row, guess_col)
+        
+        # Display the hidden computer board with player's guess
+        hidden_computer_board = computer_board.hide_ship()
+        print("\nComputer's Hidden Board:")
+        for row in hidden_computer_board:
+            print(" ".join(row))
+
 
 
 def game():
@@ -87,11 +119,9 @@ def game():
     for row in hidden_computer_board:
         print(" ".join(row))
     
-    validate_coordinates(size)
+    game_loop(player_board, computer_board, size)
     
-
-
-
+    
 
 game()
 
