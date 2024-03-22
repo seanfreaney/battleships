@@ -74,7 +74,7 @@ def validate_coordinates(size):
         return validate_coordinates(size)
 
 
-def game_loop(player_board, computer_board, size):
+def game_loop(player_board, computer_board, size, player_name):
     
     while True:
 
@@ -94,6 +94,10 @@ def game_loop(player_board, computer_board, size):
         print("\nComputer's Hidden Board:")
         for row in hidden_computer_board:
             print(" ".join(row))
+
+        # Display player board
+        print(f"{player_name}'s Board: ")
+        player_board.print()
         
         # Check if all ships are sunk
         if all(cell != "X" for row in computer_board.board for cell in row):
@@ -131,7 +135,7 @@ def game():
     for row in hidden_computer_board:
         print(" ".join(row))
     
-    game_loop(player_board, computer_board, size)
+    game_loop(player_board, computer_board, size, player_name)
     
     
 
