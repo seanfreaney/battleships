@@ -78,9 +78,15 @@ def game_loop(player_board, computer_board, size):
     
     while True:
 
+        # Allow player to quit game during each iteration of game loop
+        quit_game = input("Enter 'q' to quit the game, or press any key to continue: ")
+        if quit_game.lower() == 'q':
+            print("Quitting the game...")
+            break
+
         guess_row, guess_col = validate_coordinates(size)
     
-    # Player makes a guess on the hidden computer board
+        # Call makes_guess method of computer_board object passing player's guess_row and guess_col parameters
         is_hit = computer_board.make_guess(guess_row, guess_col)
         
         # Display the hidden computer board with player's guess
