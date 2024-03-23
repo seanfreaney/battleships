@@ -19,7 +19,11 @@ class Board:
 
         # Hide the ships
         for row, col in self.ships: #loop over each ship
-            hidden_board[row][col] = "." #hide X with .
+            if self.board[row][col] == "@":
+                hidden_board[row][col] = "@" #if the ships is hit show an @
+            else:
+                hidden_board[row][col] = "." #otherwise keep hidden with .
+
         return hidden_board
     
     def make_guess(self, row, col):
