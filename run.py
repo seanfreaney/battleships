@@ -125,6 +125,16 @@ def game_loop(player_board, computer_board, size, player_name):
             print("Congratulations! You have sunk all computer's ships!")
             break
         
+        # Computer's turn
+        computer_guess_row, computer_guess_col = player_board.random_guess()
+        is_hit = player_board.make_guess(computer_guess_row, computer_guess_col)
+        print("\nComputer guessed row:", computer_guess_row, "col:", computer_guess_col)
+        print(f"{player_name}'s Board after computer's guess: ")
+        player_board.print()
+
+        if all(cell != "X" for row in player_board.board for cell in row):
+            print("Computer has sunk all your ships! You lose.")
+            break
        
 
 
@@ -150,13 +160,13 @@ def game():
     print("Top left corner is row: 0, column: 0")
     player_name = input("Enter your name: ")
     print("-" * 35)
-    
-    print(f"{player_name}'s Board: ")
-    player_board.print()
 
     print("\nComputer's Hidden Board:")
     for row in hidden_computer_board:
         print(" ".join(row))
+
+    print(f"{player_name}'s Board: ")
+    player_board.print()
     
     game_loop(player_board, computer_board, size, player_name)
     
