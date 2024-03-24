@@ -61,24 +61,33 @@ def populate_board(board_obj, num_ships):
             ships_on_board += 1 #increment ships on board by one
 
 
-def validate_coordinates(size):
+def validate_coordinates(size, guessed_positions):
     
     try: #try-except block to handle invalid input. If guesses not integers function calls itself again
         guess_row = int(input("Enter the row number to guess (0 to {}): ".format(size - 1)))
         guess_col = int(input("Enter the column number to guess (0 to {}): ".format(size - 1)))
         
-        # check if player's guesses are greater than 0 and less than size. If not function calls itself again
-        if 0 <= guess_row < size and 0 <= guess_col < size:
-            return guess_row, guess_col
-        else:
+        # check if player's guesses are not within the board range. If true, print message and call function recursively
+        if not (0 <= guess_row < size and 0 <= guess_col < size): # Geeks for geeks if with not operator
             print("Please enter valid row and column numbers.")
             return validate_coordinates(size)
+
+        # Check if player's guesses have already been guessed. If true, print message and call function recursively
+        if (guess_row, guess_col) in guessed_positions:
+            print("You've already guessed this position. Please try again.")
+            return validate_coordinates(size, guessed_positions)
+        
+        guessed_positions.add((guess_row, guess_col))  # Add the guessed position to the set
+        return guess_row, guess_col
+
     except ValueError:
         print("Please enter valid integers for row and column.")
         return validate_coordinates(size)
 
 
 def game_loop(player_board, computer_board, size, player_name):
+
+    guessed_positions = set() #initialise an empty set to store guessed positions
     
     while True:
 
@@ -88,7 +97,8 @@ def game_loop(player_board, computer_board, size, player_name):
             print("Quitting the game...")
             break
 
-        guess_row, guess_col = validate_coordinates(size)
+        # Get validated coordinates using validate_coordinates function
+        guess_row, guess_col = validate_coordinates(size, guessed_positions)
     
         # Call makes_guess method of computer_board object passing player's guess_row and guess_col parameters
         is_hit = computer_board.make_guess(guess_row, guess_col)
