@@ -70,7 +70,7 @@ def validate_coordinates(size, guessed_positions):
         # check if player's guesses are not within the board range. If true, print message and call function recursively
         if not (0 <= guess_row < size and 0 <= guess_col < size): # Geeks for geeks if with not operator
             print("Please enter valid row and column numbers.")
-            return validate_coordinates(size)
+            return validate_coordinates(size, guessed_positions)
 
         # Check if player's guesses have already been guessed. If true, print message and call function recursively
         if (guess_row, guess_col) in guessed_positions:
@@ -82,7 +82,7 @@ def validate_coordinates(size, guessed_positions):
 
     except ValueError:
         print("Please enter valid integers for row and column.")
-        return validate_coordinates(size)
+        return validate_coordinates(size, guessed_positions)
 
 
 def game_loop(player_board, computer_board, size, player_name):
