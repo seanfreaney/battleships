@@ -35,6 +35,11 @@ class Board:
             print("Miss!")
             self.board[row][col] = "0"
             return False
+    
+    def random_guess(self): # Project 3 Scope video
+        row = random.randint(0, self.size - 1)
+        col = random.randint(0, self.size - 1)
+        return row, col
 
 class Player:
     """
@@ -73,7 +78,7 @@ def validate_coordinates(size, guessed_positions):
             return validate_coordinates(size, guessed_positions)
 
         # Check if player's guesses have already been guessed. If true, print message and call function recursively
-        if (guess_row, guess_col) in guessed_positions:
+        if (guess_row, guess_col) in guessed_positions: #w3schools python check if set item exists
             print("You've already guessed this position. Please try again.")
             return validate_coordinates(size, guessed_positions)
         
@@ -97,6 +102,8 @@ def game_loop(player_board, computer_board, size, player_name):
             print("Quitting the game...")
             break
 
+        # Player's turn
+
         # Get validated coordinates using validate_coordinates function
         guess_row, guess_col = validate_coordinates(size, guessed_positions)
     
@@ -117,6 +124,8 @@ def game_loop(player_board, computer_board, size, player_name):
         if all(cell != "X" for row in computer_board.board for cell in row):
             print("Congratulations! You have sunk all computer's ships!")
             break
+        
+       
 
 
 
