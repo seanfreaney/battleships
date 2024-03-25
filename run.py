@@ -153,8 +153,14 @@ def game_loop(player_board, computer_board, size, player_name):
             break
         
         # Computer's turn
+
+        # Call random_guess method of player_board object passing the set 'guessed_positions_computer'. Returning a tuple with random coordinates which ahve not yet been used
         computer_guess_row, computer_guess_col = player_board.random_guess(guessed_positions_computer)
+
+        # Call makes_guess method of computer_board object passing random coordinates (generated above) 
         is_hit = player_board.make_guess(computer_guess_row, computer_guess_col)
+
+        # Add computer's guess to guessed_positions_computer set
         guessed_positions_computer.add((computer_guess_row, computer_guess_col))
         print("\nComputer guessed row:", computer_guess_row, "col:", computer_guess_col)
         
@@ -205,7 +211,7 @@ def game():
     #Project 3 Scope video
     print("Welcome to Battleships")
     print(f"Board Size: {size} * {size}.")
-    #placeholder for num ships message
+    print(f"Number of ships: {num_ships}.")
     print("Top left corner is row: 0, column: 0")
     player_name = input("Enter your name: ")
     print("-" * 35)
