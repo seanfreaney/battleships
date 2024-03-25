@@ -36,10 +36,12 @@ class Board:
             self.board[row][col] = "0"
             return False
     
-    def random_guess(self): # Project 3 Scope video
-        row = random.randint(0, self.size - 1)
-        col = random.randint(0, self.size - 1)
-        return row, col
+    def random_guess(self, guessed_positions): # Project 3 Scope video
+        while True:
+            row = random.randint(0, self.size - 1)
+            col = random.randint(0, self.size - 1)
+            if (row, col) not in guessed_positions:
+                return row, col
 
 class Player:
     """
@@ -92,7 +94,8 @@ def validate_coordinates(size, guessed_positions):
 
 def game_loop(player_board, computer_board, size, player_name):
 
-    guessed_positions = set() #initialise an empty set to store guessed positions
+    guessed_positions_player = set() #initialise an empty set to store player guesses
+    guessed_positions_computer = set() #initialise an empty set to store computer guesses
     
     while True:
 
@@ -105,7 +108,7 @@ def game_loop(player_board, computer_board, size, player_name):
         # Player's turn
 
         # Get validated coordinates using validate_coordinates function
-        guess_row, guess_col = validate_coordinates(size, guessed_positions)
+        guess_row, guess_col = validate_coordinates(size, guessed_positions_player)
     
         # Call makes_guess method of computer_board object passing player's guess_row and guess_col parameters
         is_hit = computer_board.make_guess(guess_row, guess_col)
@@ -127,8 +130,9 @@ def game_loop(player_board, computer_board, size, player_name):
             break
         
         # Computer's turn
-        computer_guess_row, computer_guess_col = player_board.random_guess()
+        computer_guess_row, computer_guess_col = player_board.random_guess(guessed_positions_computer)
         is_hit = player_board.make_guess(computer_guess_row, computer_guess_col)
+        guessed_positions_computer.add((computer_guess_row, computer_guess_col))
         print("\nComputer guessed row:", computer_guess_row, "col:", computer_guess_col)
         print(f"\n{player_name}'s Board:\n")
         player_board.print()
