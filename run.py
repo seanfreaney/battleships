@@ -11,10 +11,16 @@ class Board:
         self.ships = [] #initialise ships list
     
     def print(self): #Project 3 scope video
+        """
+        Method to print the board.
+        """
         for row in self.board:
             print(" ".join(row))
 
     def hide_ship(self):
+        """
+        Method to hide ships on the board.
+        """
         hidden_board = [row[:] for row in self.board] #create new list (to be used for making guesses) by iterating over each row of the existing board
 
         # Hide the ships
@@ -27,6 +33,9 @@ class Board:
         return hidden_board
     
     def make_guess(self, row, col):
+        """
+        Method to make a guess on the board.
+        """
         if self.board[row][col] == "X":
             print("Hit!")
             self.board[row][col] = "@"
@@ -37,6 +46,9 @@ class Board:
             return False
     
     def random_guess(self, guessed_positions): # Project 3 Scope video
+        """
+        Method to make a random guess on the board.
+        """
         while True:
             row = random.randint(0, self.size - 1)
             col = random.randint(0, self.size - 1)
@@ -69,6 +81,9 @@ def populate_board(board_obj, num_ships):
 
 
 def validate_coordinates(size, guessed_positions):
+    """
+    Function to validate player's guesses.
+    """
     
     try: #try-except block to handle invalid input. If guesses not integers function calls itself again
         guess_row = int(input("Enter the row number to guess (0 to {}): ".format(size - 1)))
@@ -93,6 +108,9 @@ def validate_coordinates(size, guessed_positions):
 
 
 def game_loop(player_board, computer_board, size, player_name):
+    """
+    Function to run the game loop.
+    """
 
     guessed_positions_player = set() #initialise an empty set to store player guesses
     guessed_positions_computer = set() #initialise an empty set to store computer guesses
@@ -146,6 +164,21 @@ def game_loop(player_board, computer_board, size, player_name):
 
 
 def game():
+    """
+    Function to run the Battleships game.
+
+    This function initializes the game, including setting up the player and computer boards,
+    populating the boards with ships, and then running the game loop until one of the players wins
+    or the user quits.
+
+    The game loop alternates between the player's and computer's turns, allowing the player to make
+    guesses on the computer's board and vice versa. The game continues until all ships of one player
+    are sunk or the user chooses to quit the game.
+
+    The function displays information about the game, including the board size, player's name,
+    and instructions for making guesses. It also handles input validation to ensure the player
+    enters valid guesses.
+    """
     size = 3
     num_ships = 2
 
