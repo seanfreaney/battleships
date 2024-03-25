@@ -37,11 +37,11 @@ class Board:
         Method to make a guess on the board.
         """
         if self.board[row][col] == "X":
-            print("Hit!")
+            #print("Hit!")
             self.board[row][col] = "@"
             return True
         else:
-            print("Miss!")
+            #print("Miss!")
             self.board[row][col] = "0"
             return False
     
@@ -131,17 +131,18 @@ def game_loop(player_board, computer_board, size, player_name):
         # Call makes_guess method of computer_board object passing player's guess_row and guess_col parameters
         is_hit = computer_board.make_guess(guess_row, guess_col)
         
+        # Print result of player's guess
+        if is_hit:
+            print("\nHit!")
+        else:
+            print("\nMiss!")
+
         # Display the hidden computer board with player's guess
         hidden_computer_board = computer_board.hide_ship()
         print("\nComputer's Board:\n")
         for row in hidden_computer_board:
             print(" ".join(row))
 
-        # Display player board
-        #print(f"{player_name}'s Board: ")
-        #player_board.print()
-        #print()  # Add an empty line 
-        
         # Check if all ships are sunk
         if all(cell != "X" for row in computer_board.board for cell in row):
             print("Congratulations! You have sunk all computer's ships!")
@@ -152,6 +153,13 @@ def game_loop(player_board, computer_board, size, player_name):
         is_hit = player_board.make_guess(computer_guess_row, computer_guess_col)
         guessed_positions_computer.add((computer_guess_row, computer_guess_col))
         print("\nComputer guessed row:", computer_guess_row, "col:", computer_guess_col)
+        
+        # Print result of Computer's guess
+        if is_hit:
+            print("\nHit!")
+        else:
+            print("\nMiss!")
+        
         print(f"\n{player_name}'s Board:\n")
         player_board.print()
         print()  # Add an empty line 
