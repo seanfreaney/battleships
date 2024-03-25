@@ -1,5 +1,6 @@
 import random
 
+
 class Board: 
     """
     Class to set board size and display board.
@@ -36,12 +37,10 @@ class Board:
         """
         Method to make a guess on the board.
         """
-        if self.board[row][col] == "X":
-            #print("Hit!")
+        if self.board[row][col] == "X": 
             self.board[row][col] = "@"
             return True
         else:
-            #print("Miss!")
             self.board[row][col] = "0"
             return False
     
@@ -54,6 +53,7 @@ class Board:
             col = random.randint(0, self.size - 1)
             if (row, col) not in guessed_positions:
                 return row, col
+
 
 class Player:
     """
@@ -110,6 +110,10 @@ def validate_coordinates(size, guessed_positions):
 def game_loop(player_board, computer_board, size, player_name):
     """
     Function to run the game loop.
+
+    Manages the turns between the player and computer, allowing each to make guesses
+    on the opponent's board until one player sinks all of the opponent's ships or
+    the player decides to quit.
     """
 
     guessed_positions_player = set() #initialise an empty set to store player guesses
@@ -169,8 +173,6 @@ def game_loop(player_board, computer_board, size, player_name):
             break
        
 
-
-
 def game():
     """
     Function to run the Battleships game.
@@ -187,8 +189,8 @@ def game():
     and instructions for making guesses. It also handles input validation to ensure the player
     enters valid guesses.
     """
-    size = 3
-    num_ships = 2
+    size = 5
+    num_ships = 4
 
     player_board = Board(size, num_ships)
     computer_board = Board(size, num_ships)
@@ -217,7 +219,6 @@ def game():
     print()  # Add an empty line here
     
     game_loop(player_board, computer_board, size, player_name)
-    
     
 
 game()
