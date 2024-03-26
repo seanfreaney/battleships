@@ -163,7 +163,7 @@ def game_loop(player_board, computer_board, size, player_name):
         # Check if all ships are sunk
         if all(cell != "X" for row in computer_board.board for cell in row):
             print("Congratulations! You have sunk all computer's ships!")
-            break
+            return # Return None to indicate the game is over
 
         # Computer's turn
 
@@ -190,7 +190,7 @@ def game_loop(player_board, computer_board, size, player_name):
 
         if all(cell != "X" for row in player_board.board for cell in row):
             print("Computer has sunk all your ships! You lose.")
-            break
+            return # Return None to indicate the game is over
 
 
 def game():
@@ -240,7 +240,13 @@ def game():
         player_board.print()
         print()  # Add an empty line here
 
-        game_loop(player_board, computer_board, size, player_name)
+        # Run the game loop
+        game_result = game_loop(player_board, computer_board, size, player_name)
+
+        # Check if the player wants to quit
+        if game_result == "q":
+            print("Thanks for playing! Goodbye.")
+            break  # Break out of the outer loop to end the game
 
         # Prompt for replay
         replay = input("Do you want to play again? (y/n): ")
