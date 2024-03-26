@@ -7,11 +7,11 @@ class Board:
     """
     def __init__(self, size, num_ships):
         self.size = size
-        self.board = [["." for x in range(size)] for y in range(size)] #Project 3 scope video
+        self.board = [["." for x in range(size)] for y in range(size)]  # Project 3 scope video
         self.num_ships = num_ships
-        self.ships = [] #initialise ships list
+        self.ships = []  # initialise ships list
     
-    def print(self): #Project 3 scope video
+    def print(self):  # Project 3 scope video
         """
         Method to print the board.
         """
@@ -22,14 +22,15 @@ class Board:
         """
         Method to hide ships on the board.
         """
-        hidden_board = [row[:] for row in self.board] #create new list (to be used for making guesses) by iterating over each row of the existing board
+        # Create new list (to be used for making guesses) by iterating over each row of the existing board
+        hidden_board = [row[:] for row in self.board]  
 
         # Hide the ships
-        for row, col in self.ships: #loop over each ship
+        for row, col in self.ships:  # loop over each ship
             if self.board[row][col] == "@":
-                hidden_board[row][col] = "@" #if the ships is hit show an @
+                hidden_board[row][col] = "@"  # if the ships is hit show an @
             else:
-                hidden_board[row][col] = "." #otherwise keep hidden with .
+                hidden_board[row][col] = "."  # otherwise keep hidden with .
 
         return hidden_board
     
@@ -44,7 +45,7 @@ class Board:
             self.board[row][col] = "0"
             return False
     
-    def random_guess(self, guessed_positions): # Project 3 Scope video
+    def random_guess(self, guessed_positions):  # Project 3 Scope video
         """
         Method to make a random guess on the board.
         """
@@ -68,16 +69,16 @@ def populate_board(board_obj, num_ships):
     """
     Function to populate board.
     """
-    size = board_obj.size #access size attribute of board object
-    ships_on_board = 0 #initialise ships_on_board variable to count ships populated
+    size = board_obj.size  # access size attribute of board object
+    ships_on_board = 0  # initialise ships_on_board variable to count ships populated
 
-    while ships_on_board < num_ships: #loop that will run while ships_on_board is less than num_ships
-        row = random.randint(0, size - 1) #generate random row & col points within board range
+    while ships_on_board < num_ships:  # loop that will run while ships_on_board is less than num_ships
+        row = random.randint(0, size - 1)  # generate random row & col points within board range
         col = random.randint(0, size - 1)
-        if board_obj.board[row][col] == ".": #check if random points are empty
-            board_obj.board[row][col] = 'X' #if empty place a ship there
-            board_obj.ships.append((row,col)) #append coordinates to ships list
-            ships_on_board += 1 #increment ships on board by one
+        if board_obj.board[row][col] == ".":  # check if random points are empty
+            board_obj.board[row][col] = 'X'  # if empty place a ship there
+            board_obj.ships.append((row,col))  # append coordinates to ships list
+            ships_on_board += 1  # increment ships on board by one
 
 
 def validate_coordinates(size, guessed_positions):
@@ -85,17 +86,17 @@ def validate_coordinates(size, guessed_positions):
     Function to validate player's guesses.
     """
     
-    try: #try-except block to handle invalid input. If guesses not integers function calls itself again
+    try:  # try-except block to handle invalid input. If guesses not integers function calls itself again
         guess_row = int(input("Enter the row number to guess (0 to {}): ".format(size - 1)))
         guess_col = int(input("Enter the column number to guess (0 to {}): ".format(size - 1)))
         
         # check if player's guesses are not within the board range. If true, print message and call function recursively
-        if not (0 <= guess_row < size and 0 <= guess_col < size): # Geeks for geeks if with not operator
+        if not (0 <= guess_row < size and 0 <= guess_col < size):  # Geeks for geeks if with not operator
             print("Please enter valid row and column numbers.")
             return validate_coordinates(size, guessed_positions)
 
         # Check if player's guesses have already been guessed. If true, print message and call function recursively
-        if (guess_row, guess_col) in guessed_positions: #w3schools python check if set item exists
+        if (guess_row, guess_col) in guessed_positions:  # w3schools python check if set item exists
             print("You've already guessed this position. Please try again.")
             return validate_coordinates(size, guessed_positions)
         
@@ -116,8 +117,8 @@ def game_loop(player_board, computer_board, size, player_name):
     the player decides to quit.
     """
 
-    guessed_positions_player = set() #initialise an empty set to store player guesses
-    guessed_positions_computer = set() #initialise an empty set to store computer guesses
+    guessed_positions_player = set()  # initialise an empty set to store player guesses
+    guessed_positions_computer = set()  # initialise an empty set to store computer guesses
     
     while True:
 
@@ -151,7 +152,7 @@ def game_loop(player_board, computer_board, size, player_name):
         if all(cell != "X" for row in computer_board.board for cell in row):
             print("Congratulations! You have sunk all computer's ships!")
             break
-        
+
         # Computer's turn
 
         # Call random_guess method of player_board object passing the set 'guessed_positions_computer'. Returning a tuple with random coordinates which ahve not yet been used
