@@ -52,11 +52,14 @@ class Board:
     def random_guess(self, guessed_positions):  # Project 3 Scope video
         """
         Method to make a random guess on the board.
+
         """
 
         while True:
-            row = random.randint(0, self.size - 1)
-            col = random.randint(0, self.size - 1)
+            # Generate random row and column indices within the size of the board
+            row = random.randint(0, self.size - 1)  # Generate a random row within range
+            col = random.randint(0, self.size - 1)  # Generate a random col within range
+            # Check if the randomly generated position has not been guessed before
             if (row, col) not in guessed_positions:
                 return row, col
 
@@ -205,8 +208,8 @@ def game():
     enters valid guesses.
     """
 
-    size = 5
-    num_ships = 4
+    size = 4
+    num_ships = 3
 
     player_board = Board(size, num_ships)
     computer_board = Board(size, num_ships)
