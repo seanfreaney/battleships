@@ -137,8 +137,8 @@ def game_loop(player_board, computer_board, size, player_name):
         # Allow player to quit game during each iteration of game loop
         quit_game = input("Enter 'q' to quit the game, or press any key to continue: ")
         if quit_game.lower() == 'q':
-            print("Quitting the game...")
-            break
+            # print("Quitting the game...")
+            return "quit"  # Return "quit" to indicate the player wants to quit the game
 
         # Player's turn
 
@@ -163,7 +163,7 @@ def game_loop(player_board, computer_board, size, player_name):
         # Check if all ships are sunk
         if all(cell != "X" for row in computer_board.board for cell in row):
             print("Congratulations! You have sunk all computer's ships!")
-            return # Return None to indicate the game is over
+            return "game_over"  # Return "game_over" to indicate the game is over
 
         # Computer's turn
 
@@ -190,7 +190,7 @@ def game_loop(player_board, computer_board, size, player_name):
 
         if all(cell != "X" for row in player_board.board for cell in row):
             print("Computer has sunk all your ships! You lose.")
-            return # Return None to indicate the game is over
+            return "game_over"  # Return "game_over" to indicate the game is over
 
 
 def game():
@@ -243,16 +243,16 @@ def game():
         # Run the game loop
         game_result = game_loop(player_board, computer_board, size, player_name)
 
-        # Check if the player wants to quit
-        if game_result == "q":
+        # Check if the game is over due to sinking ships
+        if game_result == "game_over":
+            # Prompt for replay only if the game is ended by sinking ships
+            replay = input("Do you want to play again? (y/n): ")
+            if replay.lower() != 'y':
+                print("Thanks for playing! Goodbye.")
+                break  # Break out of the outer loop to end the game
+        elif game_result == "quit":
             print("Thanks for playing! Goodbye.")
-            break  # Break out of the outer loop to end the game
-
-        # Prompt for replay
-        replay = input("Do you want to play again? (y/n): ")
-        if replay.lower() != 'y':
-            print("Thanks for playing! Goodbye.")
-            break 
+            break  # Break out of the outer loop to end the game 
 
 
 game()
