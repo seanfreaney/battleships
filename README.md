@@ -17,6 +17,10 @@ The player is then asked of they would like to replay.
 
 
 ## Testing
+I have manually tested the project in the following ways:
+- Passed code through PEP8 CI Linter with no errors
+- Given invalid inputs: outside of range, strings and same input twice
+- Tested in local terminal and and CI Heroku terminal
 
 ## Validator Testing
 - PEP8 CI Python Linter
