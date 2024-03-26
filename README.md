@@ -18,18 +18,47 @@ The player is then asked of they would like to replay.
 - Computer and Player boards are randomly generated,
 - Computer board is invisible, Player board is visible.
 ![name input, board generation](assets/images/setup.png)
+
 - Input validation:
   - guesses outside of range
   - invalid input
 - Computer guesses on player board
 ![validate coordinates, outside range and letters](assets/images/validate%20coordinates%20-%20too%20big,%20letters.png)
+
 - Input validation: 
   - can't guess same square twice
 ![validate coordinates, same coordinates](assets/images/validate%20coordinates,%20same%20coordinates.png)
+
 - Ability to quit game before game ending
 ![ability to quit during game](assets/images/ability%20to%20quit%20mid%20game.png)
+
 - Ability to replay game when all ships sunk
 ![option to replay when ships sunk](assets/images/replay%20game%20ships%20sunk.png)
+
+## Data Model
+Board Class
+- Attributes:
+  - size: Represents the size of the game board.
+  - board: Represents the actual game board, implemented as a 2D list.
+  - num_ships: Represents the number of ships in the game.
+  - ships: Represents the positions of the ships on the board.
+- Methods:
+  - __init__: Initializes the board with the specified size and number of ships.
+  - print: Prints the current state of the board.
+  - hide_ship: Hides the ships on the board, revealing only hits and misses.
+  - make_guess: Allows a player to make a guess on the board.
+  - random_guess: Generates a random guess for the computer player.
+
+game_loop Function
+- Manages the game loop where the player and computer take turns making guesses.
+- Keeps track of guessed positions by both the player and the computer.
+- Alternates between player and computer turns until one player sinks all ships or the player quits.
+- Relies on the validate_coordinates function to ensure valid guesses by the player.
+
+Helper Functions
+- populate_board: Populates the game board with ships at random positions.
+- validate_coordinates: Validates the coordinates input by the player to ensure they are within the bounds of the board and have not been guessed before.
+- game: Initializes the game, sets up player and computer boards, populates boards with ships, and runs the game loop until one player wins or the user quits.
 
 ## Future Features
 - Ability to have multiple players
