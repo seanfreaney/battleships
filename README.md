@@ -16,23 +16,23 @@ The player is then asked of they would like to replay.
 ## Existing Features
 - User inputs their name,
 - Computer and Player boards are randomly generated,
-- Computer board is invisible, Player board is visible.
+- Computer board is invisible, Player board is visible.             
 ![name input, board generation](assets/images/setup.png)
 
 - Input validation:
   - guesses outside of range
   - invalid input
-- Computer guesses on player board
+- Computer guesses on player board                  
 ![validate coordinates, outside range and letters](assets/images/validate%20coordinates%20-%20too%20big,%20letters.png)
 
 - Input validation: 
-  - can't guess same square twice
+  - can't guess same square twice             
 ![validate coordinates, same coordinates](assets/images/validate%20coordinates,%20same%20coordinates.png)
 
-- Ability to quit game before game ending
+- Ability to quit game before game ending              
 ![ability to quit during game](assets/images/ability%20to%20quit%20mid%20game.png)
 
-- Ability to replay game when all ships sunk
+- Ability to replay game when all ships sunk               
 ![option to replay when ships sunk](assets/images/replay%20game%20ships%20sunk.png)
 
 ## Data Model
