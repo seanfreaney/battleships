@@ -99,8 +99,8 @@ def validate_coordinates(size, guessed_positions):
     """
 
     try:  # try-except block to handle invalid input. If guesses not integers function calls itself again
-        guess_row = int(input("Enter the row number to guess (0 to {}): ".format(size - 1)))
-        guess_col = int(input("Enter the column number to guess (0 to {}): ".format(size - 1)))
+        guess_row = int(input("Enter the row number to guess (0 to {}): \n".format(size - 1)))
+        guess_col = int(input("Enter the column number to guess (0 to {}): \n".format(size - 1)))
 
         # check if player's guesses are not within the board range. If true, print message and call function recursively
         if not (0 <= guess_row < size and 0 <= guess_col < size):  # Geeks for geeks if with not operator
@@ -135,7 +135,7 @@ def game_loop(player_board, computer_board, size, player_name):
     while True:
 
         # Allow player to quit game during each iteration of game loop
-        quit_game = input("Enter 'q' to quit the game, or press any key to continue: ")
+        quit_game = input("Enter 'q' to quit the game, or press any key to continue: \n")
         if quit_game.lower() == 'q':
             # print("Quitting the game...")
             return "quit"  # Return "quit" to indicate the player wants to quit the game
@@ -229,7 +229,7 @@ def game():
         print(f"Board Size: {size} * {size}.")
         print(f"Number of ships: {num_ships}.")
         print("Top left corner is row: 0, column: 0")
-        player_name = input("Enter your name: ")
+        player_name = input("Enter your name: \n")
         print("-" * 35)
 
         print("\nComputer's Board:\n")
