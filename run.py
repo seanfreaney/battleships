@@ -41,13 +41,15 @@ class Board:
         """
         Method to make a guess on the board.
         """
-
+        # Check if guessed position contains an X
         if self.board[row][col] == "X":
+            # If the guess hits a ship, mark it as a hit
             self.board[row][col] = "@"
-            return True
+            return True  # Return True to indicate a hit
         else:
+            # If the guess misses the ship, mark it as a miss
             self.board[row][col] = "0"
-            return False
+            return False # Return False to indicate a miss
 
     def random_guess(self, guessed_positions):  # Project 3 Scope video
         """
