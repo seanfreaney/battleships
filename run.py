@@ -66,16 +66,6 @@ class Board:
                 return row, col
 
 
-class Player:
-    """
-    Class to represent player.
-    """
-
-    def __init__(self, name, size, num_ships):
-        self.name = name
-        self.board = Board(size, num_ships)
-
-
 def populate_board(board_obj, num_ships):
     """
     Function to populate board.
