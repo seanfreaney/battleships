@@ -1,20 +1,22 @@
 import random
 
 
-class Board: 
+class Board:
     """
     Class to set board size and display board.
     """
+
     def __init__(self, size, num_ships):
         self.size = size
         self.board = [["." for x in range(size)] for y in range(size)]  # Project 3 scope video
         self.num_ships = num_ships
         self.ships = []  # initialise ships list
-    
+
     def print(self):  # Project 3 scope video
         """
         Method to print the board.
         """
+
         for row in self.board:
             print(" ".join(row))
 
@@ -22,8 +24,9 @@ class Board:
         """
         Method to hide ships on the board.
         """
+
         # Create new list (to be used for making guesses) by iterating over each row of the existing board
-        hidden_board = [row[:] for row in self.board]  
+        hidden_board = [row[:] for row in self.board]
 
         # Hide the ships
         for row, col in self.ships:  # loop over each ship
@@ -33,22 +36,24 @@ class Board:
                 hidden_board[row][col] = "."  # otherwise keep hidden with .
 
         return hidden_board
-    
+
     def make_guess(self, row, col):
         """
         Method to make a guess on the board.
         """
-        if self.board[row][col] == "X": 
+
+        if self.board[row][col] == "X":
             self.board[row][col] = "@"
             return True
         else:
             self.board[row][col] = "0"
             return False
-    
+
     def random_guess(self, guessed_positions):  # Project 3 Scope video
         """
         Method to make a random guess on the board.
         """
+
         while True:
             row = random.randint(0, self.size - 1)
             col = random.randint(0, self.size - 1)
@@ -60,6 +65,7 @@ class Player:
     """
     Class to represent player.
     """
+
     def __init__(self, name, size, num_ships):
         self.name = name
         self.board = Board(size, num_ships)
@@ -69,6 +75,7 @@ def populate_board(board_obj, num_ships):
     """
     Function to populate board.
     """
+
     size = board_obj.size  # access size attribute of board object
     ships_on_board = 0  # initialise ships_on_board variable to count ships populated
 
@@ -85,11 +92,11 @@ def validate_coordinates(size, guessed_positions):
     """
     Function to validate player's guesses.
     """
-    
+
     try:  # try-except block to handle invalid input. If guesses not integers function calls itself again
         guess_row = int(input("Enter the row number to guess (0 to {}): ".format(size - 1)))
         guess_col = int(input("Enter the column number to guess (0 to {}): ".format(size - 1)))
-        
+
         # check if player's guesses are not within the board range. If true, print message and call function recursively
         if not (0 <= guess_row < size and 0 <= guess_col < size):  # Geeks for geeks if with not operator
             print("Please enter valid row and column numbers.")
@@ -99,7 +106,7 @@ def validate_coordinates(size, guessed_positions):
         if (guess_row, guess_col) in guessed_positions:  # w3schools python check if set item exists
             print("You've already guessed this position. Please try again.")
             return validate_coordinates(size, guessed_positions)
-        
+
         guessed_positions.add((guess_row, guess_col))  # Add the guessed position to the set
         return guess_row, guess_col
 
@@ -119,7 +126,7 @@ def game_loop(player_board, computer_board, size, player_name):
 
     guessed_positions_player = set()  # initialise an empty set to store player guesses
     guessed_positions_computer = set()  # initialise an empty set to store computer guesses
-    
+
     while True:
 
         # Allow player to quit game during each iteration of game loop
@@ -132,10 +139,10 @@ def game_loop(player_board, computer_board, size, player_name):
 
         # Get validated coordinates using validate_coordinates function
         guess_row, guess_col = validate_coordinates(size, guessed_positions_player)
-    
+
         # Call makes_guess method of computer_board object passing player's guess_row and guess_col parameters
         is_hit = computer_board.make_guess(guess_row, guess_col)
-        
+
         # Print result of player's guess
         if is_hit:
             print("\nHit!")
@@ -155,30 +162,31 @@ def game_loop(player_board, computer_board, size, player_name):
 
         # Computer's turn
 
-        # Call random_guess method of player_board object passing the set 'guessed_positions_computer'. Returning a tuple with random coordinates which ahve not yet been used
+        # Call random_guess method of player_board object passing the set 'guessed_positions_computer'.
+        # Returning a tuple with random coordinates which ahve not yet been used
         computer_guess_row, computer_guess_col = player_board.random_guess(guessed_positions_computer)
 
-        # Call makes_guess method of computer_board object passing random coordinates (generated above) 
+        # Call makes_guess method of computer_board object passing random coordinates (generated above)
         is_hit = player_board.make_guess(computer_guess_row, computer_guess_col)
 
         # Add computer's guess to guessed_positions_computer set
         guessed_positions_computer.add((computer_guess_row, computer_guess_col))
         print("\nComputer guessed row:", computer_guess_row, "col:", computer_guess_col)
-        
+
         # Print result of Computer's guess
         if is_hit:
             print("\nHit!")
         else:
             print("\nMiss!")
-        
+
         print(f"\n{player_name}'s Board:\n")
         player_board.print()
-        print()  # Add an empty line 
+        print()  # Add an empty line
 
         if all(cell != "X" for row in player_board.board for cell in row):
             print("Computer has sunk all your ships! You lose.")
             break
-       
+
 
 def game():
     """
@@ -196,6 +204,7 @@ def game():
     and instructions for making guesses. It also handles input validation to ensure the player
     enters valid guesses.
     """
+
     size = 5
     num_ships = 4
 
@@ -209,7 +218,7 @@ def game():
     # Hide ships on computer's board
     hidden_computer_board = computer_board.hide_ship()
 
-    #Project 3 Scope video
+    # Project 3 Scope video
     print("Welcome to Battleships")
     print(f"Board Size: {size} * {size}.")
     print(f"Number of ships: {num_ships}.")
@@ -224,9 +233,9 @@ def game():
     print(f"\n{player_name}'s Board:\n")
     player_board.print()
     print()  # Add an empty line here
-    
+
     game_loop(player_board, computer_board, size, player_name)
-    
+
 
 game()
 
