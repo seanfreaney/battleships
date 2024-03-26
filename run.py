@@ -49,7 +49,7 @@ class Board:
         else:
             # If the guess misses the ship, mark it as a miss
             self.board[row][col] = "0"
-            return False # Return False to indicate a miss
+            return False  # Return False to indicate a miss
 
     def random_guess(self, guessed_positions):  # Project 3 Scope video
         """
@@ -242,7 +242,7 @@ def game():
                 break  # Break out of the outer loop to end the game
         elif game_result == "quit":
             print("Thanks for playing! Goodbye.")
-            break  # Break out of the outer loop to end the game 
+            break  # Break out of the outer loop to end the game
 
 
 game()
