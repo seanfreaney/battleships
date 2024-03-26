@@ -1,32 +1,19 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Battleships
 
-Welcome,
+Battleships is a pyton terminal game shich runs in the Code Institue mock terminal on Heroku.
+Users play against a computer to try and guess the location of the computer's ships before the computer finds theirs.
+The board is 4 * 4 squares and contains 3 ships, each ships occupies 1 square
+- the live link can be found here: <https://battlesean-e791976cdc64.herokuapp.com/>
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+## How to Play
+In this version of the classic game, the player enetrs their name and two boards are randomly generated.
+The player's name is displayed over their board and their ships are visible ('X'). The ships on the computer board remain invisible.
+The player can then enter row and column coordinates to guess the location of the computer's ships.
+The computer then guesses the coordinates of the player's ships.
+The player can quit during the game or the game will end once either the player or the computer ships have been sunk.
+The player is then asked of they would like to replay.
 
-## Reminders
+## Game Logic
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
 
-## Creating the Heroku app
-
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
-
-1. `heroku/python`
-2. `heroku/nodejs`
-
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
-
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
-
-Connect your GitHub repository and deploy as normal.
-
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
+## Features
