@@ -224,6 +224,7 @@ def game():
         hidden_computer_board = computer_board.hide_ship()
 
         # Project 3 Scope video
+        print("-" * 35)
         print("Welcome to Battleships")
         print(f"Board Size: {size} * {size}.")
         print(f"Number of ships: {num_ships}.")
