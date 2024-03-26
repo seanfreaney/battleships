@@ -84,7 +84,7 @@ def populate_board(board_obj, num_ships):
         col = random.randint(0, size - 1)
         if board_obj.board[row][col] == ".":  # check if random points are empty
             board_obj.board[row][col] = 'X'  # if empty place a ship there
-            board_obj.ships.append((row,col))  # append coordinates to ships list
+            board_obj.ships.append((row, col))  # append coordinates to ships list
             ships_on_board += 1  # increment ships on board by one
 
 
