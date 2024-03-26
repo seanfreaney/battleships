@@ -209,37 +209,43 @@ def game():
     and instructions for making guesses. It also handles input validation to ensure the player
     enters valid guesses.
     """
+    while True:
+        size = 4
+        num_ships = 3
 
-    size = 4
-    num_ships = 3
+        player_board = Board(size, num_ships)
+        computer_board = Board(size, num_ships)
 
-    player_board = Board(size, num_ships)
-    computer_board = Board(size, num_ships)
+        # Populate both player's and computer's boards
+        populate_board(player_board, num_ships)
+        populate_board(computer_board, num_ships)
 
-    # Populate both player's and computer's boards
-    populate_board(player_board, num_ships)
-    populate_board(computer_board, num_ships)
+        # Hide ships on computer's board
+        hidden_computer_board = computer_board.hide_ship()
 
-    # Hide ships on computer's board
-    hidden_computer_board = computer_board.hide_ship()
+        # Project 3 Scope video
+        print("Welcome to Battleships")
+        print(f"Board Size: {size} * {size}.")
+        print(f"Number of ships: {num_ships}.")
+        print("Top left corner is row: 0, column: 0")
+        player_name = input("Enter your name: ")
+        print("-" * 35)
 
-    # Project 3 Scope video
-    print("Welcome to Battleships")
-    print(f"Board Size: {size} * {size}.")
-    print(f"Number of ships: {num_ships}.")
-    print("Top left corner is row: 0, column: 0")
-    player_name = input("Enter your name: ")
-    print("-" * 35)
+        print("\nComputer's Board:\n")
+        for row in hidden_computer_board:
+            print(" ".join(row))
 
-    print("\nComputer's Board:\n")
-    for row in hidden_computer_board:
-        print(" ".join(row))
+        print(f"\n{player_name}'s Board:\n")
+        player_board.print()
+        print()  # Add an empty line here
 
-    print(f"\n{player_name}'s Board:\n")
-    player_board.print()
-    print()  # Add an empty line here
+        game_loop(player_board, computer_board, size, player_name)
 
-    game_loop(player_board, computer_board, size, player_name)
+        # Prompt for replay
+        replay = input("Do you want to play again? (y/n): ")
+        if replay.lower() != 'y':
+            print("Thanks for playing! Goodbye.")
+            break 
 
 
 game()
