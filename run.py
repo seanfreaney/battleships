@@ -5,7 +5,6 @@ class Board:
     """
     Class to set board size and display board.
     """
-
     def __init__(self, size, num_ships):
         self.size = size
         # Project 3 scope video
@@ -17,7 +16,6 @@ class Board:
         """
         Method to print the board.
         """
-
         for row in self.board:
             print(" ".join(row))
 
@@ -25,7 +23,6 @@ class Board:
         """
         Method to hide ships on the board.
         """
-
         # Create new list (to be used for making guesses)
         # by iterating over each row of the existing board
         hidden_board = [row[:] for row in self.board]
@@ -58,7 +55,6 @@ class Board:
         Method to make a random guess on the board.
 
         """
-
         while True:
             # Generate random row and column within the size of the board
             row = random.randint(0, self.size - 1)
@@ -72,7 +68,6 @@ def populate_board(board_obj, num_ships):
     """
     Function to populate board.
     """
-
     size = board_obj.size  # access size attribute of board object
     # initialise ships_on_board variable to count ships populated
     ships_on_board = 0
@@ -92,7 +87,6 @@ def validate_coordinates(size, guessed_positions):
     """
     Function to validate player's guesses.
     """
-
     # try-except block to handle invalid input.
     # If guesses not integers function calls itself again
     try:
@@ -130,7 +124,6 @@ def game_loop(player_board, computer_board, size, player_name):
     on the opponent's board until one player sinks all of the opponent's ships or
     the player decides to quit.
     """
-
     # initialise an empty set to store player guesses
     guessed_positions_player = set()
     # initialise an empty set to store computer guesses
