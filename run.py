@@ -156,7 +156,7 @@ def game_loop(player_board, computer_board, size, player_name):
 
         # Display the hidden computer board with player's guess
         hidden_computer_board = computer_board.hide_ship()
-        print("\nComputer's Board:\n")
+        print("\nComputer's Board:")
         for row in hidden_computer_board:
             print(" ".join(row))
 
@@ -184,7 +184,7 @@ def game_loop(player_board, computer_board, size, player_name):
         else:
             print("\nMiss!")
 
-        print(f"\n{player_name}'s Board:\n")
+        print(f"\n{player_name}'s Board:")
         player_board.print()
         print()  # Add an empty line
 
@@ -232,11 +232,11 @@ def game():
         player_name = input("Enter your name: \n")
         print("-" * 35)
 
-        print("\nComputer's Board:\n")
+        print("\nComputer's Board:")
         for row in hidden_computer_board:
             print(" ".join(row))
 
-        print(f"\n{player_name}'s Board:\n")
+        print(f"\n{player_name}'s Board:")
         player_board.print()
         print()  # Add an empty line here
 
