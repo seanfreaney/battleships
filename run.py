@@ -93,7 +93,8 @@ def validate_coordinates(size, guessed_positions):
     Function to validate player's guesses.
     """
 
-    # try-except block to handle invalid input. If guesses not integers function calls itself again
+    # try-except block to handle invalid input. 
+    # If guesses not integers function calls itself again
     try:  
         guess_row = int(input("Enter the row number to guess (0 to {}): \n".format(size - 1)))
         guess_col = int(input("Enter the column number to guess (0 to {}): \n".format(size - 1)))
