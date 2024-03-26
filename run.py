@@ -93,9 +93,9 @@ def validate_coordinates(size, guessed_positions):
     Function to validate player's guesses.
     """
 
-    # try-except block to handle invalid input. 
+    # try-except block to handle invalid input.
     # If guesses not integers function calls itself again
-    try:  
+    try:
         guess_row = int(input("Enter the row number to guess (0 to {}): \n".format(size - 1)))
         guess_col = int(input("Enter the column number to guess (0 to {}): \n".format(size - 1)))
 
@@ -106,7 +106,7 @@ def validate_coordinates(size, guessed_positions):
             print("Please enter valid row and column numbers.")
             return validate_coordinates(size, guessed_positions)
 
-        # Check if player's guesses have already been guessed 
+        # Check if player's guesses have already been guessed
         # If true, print message and call function recursively
         # w3schools python check if set item exists
         if (guess_row, guess_col) in guessed_positions:
@@ -149,7 +149,7 @@ def game_loop(player_board, computer_board, size, player_name):
         # Get validated coordinates using validate_coordinates function
         guess_row, guess_col = validate_coordinates(size, guessed_positions_player)
 
-        # Call makes_guess method of computer_board object 
+        # Call makes_guess method of computer_board object
         # pass player's guess_row and guess_col parameters
         is_hit = computer_board.make_guess(guess_row, guess_col)
 
@@ -172,8 +172,8 @@ def game_loop(player_board, computer_board, size, player_name):
 
         # Computer's turn
 
-        # Call random_guess method of player_board object 
-        # pass the set 'guessed_positions_computer'.
+        # Call random_guess method of player_board object
+        # pass the set 'guessed_positions_computer'
         # Returning a tuple with random coordinates which ahve not yet been used
         computer_guess_row, computer_guess_col = player_board.random_guess(guessed_positions_computer)
 
@@ -204,14 +204,14 @@ def game():
     """
     Function to run the Battleships game.
 
-    This function initializes the game, 
+    This function initializes the game,
     including setting up the player and computer boards,
-    populating the boards with ships, 
+    populating the boards with ships,
     and then running the game loop until one of the players wins
     or the user quits.
 
-    The game loop alternates between the player's and computer's turns, 
-    allowing the player to make guesses on the computer's board and vice versa. 
+    The game loop alternates between the player's and computer's turns,
+    allowing the player to make guesses on the computer's board and vice versa.
     The game continues until all ships of one player
     are sunk or the user chooses to quit the game.
 
