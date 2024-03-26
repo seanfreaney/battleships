@@ -13,12 +13,29 @@ The computer then guesses the coordinates of the player's ships.
 The player can quit during the game or the game will end once either the player or the computer ships have been sunk.
 The player is then asked of they would like to replay.
 
-## Features
-
-![option to replay when ships sunk](assets/images/replay%20game%20ships%20sunk.png)
-![validate coordinates, same coordinates](assets/images/validate%20coordinates,%20same%20coordinates.png)
+## Existing Features
+- User inputs their name,
+- Computer and Player boards are randomly generated,
+- Computer board is invisible, Player board is visible.
+![name input, board generation](assets/images/setup.png)
+- Input validation:
+  - guesses outside of range
+  - invalid input
+- Computer guesses on player board
 ![validate coordinates, outside range and letters](assets/images/validate%20coordinates%20-%20too%20big,%20letters.png)
+- Input validation: 
+  - can't guess same square twice
+![validate coordinates, same coordinates](assets/images/validate%20coordinates,%20same%20coordinates.png)
+- Ability to quit game before game ending
 ![ability to quit during game](assets/images/ability%20to%20quit%20mid%20game.png)
+- Ability to replay game when all ships sunk
+![option to replay when ships sunk](assets/images/replay%20game%20ships%20sunk.png)
+
+## Future Features
+- Ability to have multiple players
+- Ability to set the board size
+- Ability to select number of ships
+- Ability to select ship locations
 
 ## Testing
 I have manually tested the project in the following ways:
