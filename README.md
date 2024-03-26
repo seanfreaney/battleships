@@ -13,7 +13,25 @@ The computer then guesses the coordinates of the player's ships.
 The player can quit during the game or the game will end once either the player or the computer ships have been sunk.
 The player is then asked of they would like to replay.
 
-## Game Logic
-
-
 ## Features
+
+
+## Testing
+
+## Validator Testing
+- PEP8 CI Python Linter
+  - no errors returned, however, multiple lines too long but I couldn't change this as it affected the syntax of code.
+
+## Deployment
+- Steps for deployment
+  - Fork or clone this repository
+  - Create a new Heroku app
+  - Set the buildpacks to Python and NodeJS in that order
+  - Link the Heroku app to the repository
+  - Click on Deploy
+
+## Credits
+ - Code Institue for deployment terminal
+ - Code Institute Project 3 scope video
+ - if not: <https://www.geeksforgeeks.org/python-if-with-not-operator/>
+ - if in: <https://www.w3schools.com/python/gloss_python_check_if_set_item_exists.asp>
