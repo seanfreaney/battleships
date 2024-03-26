@@ -8,7 +8,8 @@ class Board:
 
     def __init__(self, size, num_ships):
         self.size = size
-        self.board = [["." for x in range(size)] for y in range(size)]  # Project 3 scope video
+        # Project 3 scope video
+        self.board = [["." for x in range(size)] for y in range(size)]
         self.num_ships = num_ships
         self.ships = []  # initialise ships list
 
@@ -25,7 +26,8 @@ class Board:
         Method to hide ships on the board.
         """
 
-        # Create new list (to be used for making guesses) by iterating over each row of the existing board
+        # Create new list (to be used for making guesses)
+        # by iterating over each row of the existing board
         hidden_board = [row[:] for row in self.board]
 
         # Hide the ships
@@ -58,10 +60,10 @@ class Board:
         """
 
         while True:
-            # Generate random row and column indices within the size of the board
-            row = random.randint(0, self.size - 1)  # Generate a random row within range
-            col = random.randint(0, self.size - 1)  # Generate a random col within range
-            # Check if the randomly generated position has not been guessed before
+            # Generate random row and column within the size of the board
+            row = random.randint(0, self.size - 1)
+            col = random.randint(0, self.size - 1)
+            # Check if the position has not been guessed before
             if (row, col) not in guessed_positions:
                 return row, col
 
@@ -72,14 +74,17 @@ def populate_board(board_obj, num_ships):
     """
 
     size = board_obj.size  # access size attribute of board object
-    ships_on_board = 0  # initialise ships_on_board variable to count ships populated
+    # initialise ships_on_board variable to count ships populated
+    ships_on_board = 0
 
-    while ships_on_board < num_ships:  # loop that will run while ships_on_board is less than num_ships
-        row = random.randint(0, size - 1)  # generate random row & col points within board range
+    # loop that will run while ships_on_board is less than num_ships
+    while ships_on_board < num_ships:
+        # generate random points within board range
+        row = random.randint(0, size - 1)
         col = random.randint(0, size - 1)
-        if board_obj.board[row][col] == ".":  # check if random points are empty
+        if board_obj.board[row][col] == ".":  # check if the points are empty
             board_obj.board[row][col] = 'X'  # if empty place a ship there
-            board_obj.ships.append((row, col))  # append coordinates to ships list
+            board_obj.ships.append((row, col))  # append points to ships list
             ships_on_board += 1  # increment ships on board by one
 
 
@@ -88,21 +93,27 @@ def validate_coordinates(size, guessed_positions):
     Function to validate player's guesses.
     """
 
-    try:  # try-except block to handle invalid input. If guesses not integers function calls itself again
+    # try-except block to handle invalid input. If guesses not integers function calls itself again
+    try:  
         guess_row = int(input("Enter the row number to guess (0 to {}): \n".format(size - 1)))
         guess_col = int(input("Enter the column number to guess (0 to {}): \n".format(size - 1)))
 
-        # check if player's guesses are not within the board range. If true, print message and call function recursively
-        if not (0 <= guess_row < size and 0 <= guess_col < size):  # Geeks for geeks if with not operator
+        # check if player's guesses are not within the board range
+        # If true, print message and call function recursively
+        # Geeks for geeks if with not operator
+        if not (0 <= guess_row < size and 0 <= guess_col < size):
             print("Please enter valid row and column numbers.")
             return validate_coordinates(size, guessed_positions)
 
-        # Check if player's guesses have already been guessed. If true, print message and call function recursively
-        if (guess_row, guess_col) in guessed_positions:  # w3schools python check if set item exists
+        # Check if player's guesses have already been guessed 
+        # If true, print message and call function recursively
+        # w3schools python check if set item exists
+        if (guess_row, guess_col) in guessed_positions:
             print("You've already guessed this position. Please try again.")
             return validate_coordinates(size, guessed_positions)
 
-        guessed_positions.add((guess_row, guess_col))  # Add the guessed position to the set
+        # Add the guessed position to the set
+        guessed_positions.add((guess_row, guess_col))
         return guess_row, guess_col
 
     except ValueError:
@@ -119,23 +130,26 @@ def game_loop(player_board, computer_board, size, player_name):
     the player decides to quit.
     """
 
-    guessed_positions_player = set()  # initialise an empty set to store player guesses
-    guessed_positions_computer = set()  # initialise an empty set to store computer guesses
+    # initialise an empty set to store player guesses
+    guessed_positions_player = set()
+    # initialise an empty set to store computer guesses
+    guessed_positions_computer = set()
 
     while True:
 
         # Allow player to quit game during each iteration of game loop
         quit_game = input("Enter 'q' to quit the game, or press any key to continue: \n")
         if quit_game.lower() == 'q':
-            # print("Quitting the game...")
-            return "quit"  # Return "quit" to indicate the player wants to quit the game
+            # Return "quit" to indicate the player wants to quit the game
+            return "quit"
 
         # Player's turn
 
         # Get validated coordinates using validate_coordinates function
         guess_row, guess_col = validate_coordinates(size, guessed_positions_player)
 
-        # Call makes_guess method of computer_board object passing player's guess_row and guess_col parameters
+        # Call makes_guess method of computer_board object 
+        # pass player's guess_row and guess_col parameters
         is_hit = computer_board.make_guess(guess_row, guess_col)
 
         # Print result of player's guess
@@ -157,11 +171,13 @@ def game_loop(player_board, computer_board, size, player_name):
 
         # Computer's turn
 
-        # Call random_guess method of player_board object passing the set 'guessed_positions_computer'.
+        # Call random_guess method of player_board object 
+        # pass the set 'guessed_positions_computer'.
         # Returning a tuple with random coordinates which ahve not yet been used
         computer_guess_row, computer_guess_col = player_board.random_guess(guessed_positions_computer)
 
-        # Call makes_guess method of computer_board object passing random coordinates (generated above)
+        # Call makes_guess method of computer_board object
+        # pass random coordinates (generated above)
         is_hit = player_board.make_guess(computer_guess_row, computer_guess_col)
 
         # Add computer's guess to guessed_positions_computer set
@@ -187,12 +203,15 @@ def game():
     """
     Function to run the Battleships game.
 
-    This function initializes the game, including setting up the player and computer boards,
-    populating the boards with ships, and then running the game loop until one of the players wins
+    This function initializes the game, 
+    including setting up the player and computer boards,
+    populating the boards with ships, 
+    and then running the game loop until one of the players wins
     or the user quits.
 
-    The game loop alternates between the player's and computer's turns, allowing the player to make
-    guesses on the computer's board and vice versa. The game continues until all ships of one player
+    The game loop alternates between the player's and computer's turns, 
+    allowing the player to make guesses on the computer's board and vice versa. 
+    The game continues until all ships of one player
     are sunk or the user chooses to quit the game.
 
     The function displays information about the game, including the board size, player's name,
